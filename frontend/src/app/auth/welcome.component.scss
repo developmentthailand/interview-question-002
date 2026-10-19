@@ -1,0 +1,17 @@
+:host { display: block; }
+.welcome-card { text-align: center; color: #293a2f; }
+.welcome-symbol { display: grid; width: 64px; height: 64px; place-items: center; margin: 0 auto 24px; border-radius: 20px; color: #2b6748; background: #e9f3e6; }
+.welcome-symbol svg { width: 41px; height: 41px; }
+.welcome-kicker { margin: 0 0 12px; color: #68806d; font-size: 10px; font-weight: 750; letter-spacing: .16em; }
+h2 { margin: 0; color: #1e342a; font-size: clamp(28px, 3vw, 35px); font-weight: 620; letter-spacing: -.045em; line-height: 1.22; }
+h2 span { display: block; overflow-wrap: anywhere; }
+h2 .user-name { margin-top: 3px; color: #2d6948; font-size: .78em; }
+.welcome-copy { margin: 13px 0 28px; color: #78847a; font-size: 12px; line-height: 1.6; }
+.identity-row { display: flex; max-width: 270px; align-items: center; gap: 12px; margin: 0 auto 25px; padding: 13px; border: 1px solid #e3ebe2; border-radius: 12px; text-align: left; background: #fbfcfa; }
+.identity-avatar { display: grid; width: 37px; height: 37px; flex: 0 0 auto; place-items: center; border-radius: 11px; color: #21543e; background: #e5f0e3; font-size: 14px; font-weight: 750; }
+.identity-row small, .identity-row strong { display: block; }
+.identity-row small { color: #8b978d; font-size: 9px; }
+.identity-row strong { margin-top: 3px; color: #33463a; font-size: 12px; font-weight: 650; overflow-wrap: anywhere; }
+.sign-out-button { min-height: 45px; padding: 0 23px; border: 1px solid #cfddd1; border-radius: 10px; color: #2b5b43; background: #fff; font: inherit; font-size: 12px; font-weight: 680; cursor: pointer; }
+.sign-out-button:hover { border-color: #a9c5ad; background: #f3f8f2; }
+.sign-out-button:focus-visible { outline: 3px solid rgb(57 117 84 / 27%); outline-offset: 2px; }

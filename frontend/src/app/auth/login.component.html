@@ -1,0 +1,41 @@
+<section class="auth-card" aria-labelledby="login-title">
+  <div class="form-heading">
+    <p class="form-kicker">YOUR ACCOUNT</p>
+    <h2 id="login-title">Welcome back</h2>
+    <p class="form-description">Sign in with the username and password you created.</p>
+  </div>
+
+  @if (registrationMessage(); as message) {
+    <div class="notice success-notice" role="status">{{ message }}</div>
+  }
+  @if (errorMessage(); as message) {
+    <div class="notice error-notice" role="alert">{{ message }}</div>
+  }
+
+  <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <div class="field-group">
+      <label for="username">User</label>
+      <input id="username" type="text" formControlName="username" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="Enter your username" />
+      @if (form.controls.username.touched && form.controls.username.hasError('required')) {
+        <span class="field-error">Enter your username.</span>
+      }
+    </div>
+
+    <div class="field-group">
+      <label for="password">Password</label>
+      <input id="password" type="password" formControlName="password" autocomplete="current-password" placeholder="Enter your password" />
+      @if (form.controls.password.touched && form.controls.password.hasError('required')) {
+        <span class="field-error">Enter your password.</span>
+      }
+    </div>
+
+    <button class="primary-button" type="submit" [disabled]="pending() || form.invalid">
+      @if (pending()) { <span class="button-spinner" aria-hidden="true"></span> Signing in… } @else { Sign in }
+    </button>
+  </form>
+
+  <div class="form-divider"><span>NEW HERE?</span></div>
+  <p class="switch-copy">Create an account to get started.</p>
+  <button class="secondary-button" type="button" (click)="registerRequested.emit()">Create an account</button>
+  <p class="password-hint">Your password is always kept private.</p>
+</section>

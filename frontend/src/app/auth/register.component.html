@@ -1,0 +1,55 @@
+<section class="auth-card" aria-labelledby="register-title">
+  <button class="back-link" type="button" (click)="cancelled.emit()"><span aria-hidden="true">←</span> Back to sign in</button>
+  <div class="form-heading">
+    <p class="form-kicker">GET STARTED</p>
+    <h2 id="register-title">Create your account</h2>
+    <p class="form-description">Choose a username and a strong password to continue.</p>
+  </div>
+
+  @if (errorMessage(); as message) {
+    <div class="notice error-notice" role="alert">{{ message }}</div>
+  }
+
+  <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <div class="field-group">
+      <label for="username">User</label>
+      <input id="username" type="text" formControlName="username" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="Choose a username" />
+      @if (form.controls.username.touched && form.controls.username.hasError('required')) {
+        <span class="field-error">Enter a username.</span>
+      } @else if (form.controls.username.touched && form.controls.username.hasError('usernameTooLong')) {
+        <span class="field-error">Use no more than 64 characters.</span>
+      } @else if (form.controls.username.touched && form.controls.username.hasError('usernameControlCharacter')) {
+        <span class="field-error">Control characters are not allowed.</span>
+      }
+    </div>
+
+    <div class="field-group">
+      <label for="password">Password</label>
+      <input id="password" type="password" formControlName="password" autocomplete="new-password" placeholder="Create a password" />
+      <span class="field-hint">Use at least 15 characters. Spaces and Unicode are allowed.</span>
+      @if (form.controls.password.touched && form.controls.password.hasError('required')) {
+        <span class="field-error">Enter a password.</span>
+      } @else if (form.controls.password.touched && form.controls.password.hasError('passwordTooShort')) {
+        <span class="field-error">Use at least 15 characters.</span>
+      } @else if (form.controls.password.touched && form.controls.password.hasError('passwordTooLong')) {
+        <span class="field-error">Use no more than 128 characters.</span>
+      }
+    </div>
+
+    <div class="field-group">
+      <label for="confirmPassword">Confirm password</label>
+      <input id="confirmPassword" type="password" formControlName="confirmPassword" autocomplete="new-password" placeholder="Enter your password again" />
+      @if (form.controls.confirmPassword.touched && form.controls.confirmPassword.hasError('required')) {
+        <span class="field-error">Confirm your password.</span>
+      } @else if (form.controls.confirmPassword.touched && form.hasError('passwordMismatch')) {
+        <span class="field-error">Passwords do not match.</span>
+      }
+    </div>
+
+    <button class="primary-button" type="submit" [disabled]="pending() || form.invalid">
+      @if (pending()) { <span class="button-spinner" aria-hidden="true"></span> Creating account… } @else { Create account }
+    </button>
+  </form>
+
+  <p class="password-hint">By continuing, your password is stored as a secure hash.</p>
+</section>
